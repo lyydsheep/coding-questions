@@ -3,6 +3,7 @@ package main
 import (
 	"coding-questions/questions"
 	"context"
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -15,11 +16,12 @@ func main() {
 	signal.Notify(sigChan, syscall.SIGTERM, syscall.SIGINT)
 
 	// working...
-	questions.SolveQ1(ctx)
+	questions.SolveQ2(ctx)
 
 	// 优雅退出
 	<-sigChan
 	cancel()
 	// 等待一段时间确保协程退出
+	fmt.Println("quiting....")
 	time.Sleep(time.Second * 5)
 }
