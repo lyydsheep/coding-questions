@@ -16,7 +16,7 @@ func main() {
 	signal.Notify(sigChan, syscall.SIGTERM, syscall.SIGINT)
 
 	// working...
-	questions.SolveQ5(ctx)
+	questions.SolveQ6(ctx)
 
 	// 优雅退出
 	<-sigChan
