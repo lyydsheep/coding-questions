@@ -60,6 +60,12 @@
 3. 使用 `list` 命令查看 CPU 占用过高的函数。
 ![img.png](images/img3.png)
 
+##### 排查内存占用过多
+1. 进入交互式终端：`go tool pprof http://host:port/debug/pprof/heap`
+2. 使用 `top` 或 `web` 命令查看内存占用情况。
+3. 使用 `list` 命令查看内存占用过高的函数。
+
+
 ## 贡献
 
 欢迎提交代码和建议，一起完善这个项目！
