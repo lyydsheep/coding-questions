@@ -65,6 +65,15 @@
 2. 使用 `top` 或 `web` 命令查看内存占用情况。
 3. 使用 `list` 命令查看内存占用过高的函数。
 
+##### 排查频繁 GC
+1. 查看 GC 日志：`GODEBUG=gctrace=1 ./your program | grep gc`
+   ![img_1.png](images/img_1.png)
+2. 进入交互式终端：`go tool pprof http://host:port/debug/pprof/allocs`
+3. 使用 `top` 或 `web` 命令查看内存分配情况。
+4. 使用 `list` 命令查看频繁分配内存的函数。
+5. 调整代码或者配置，例如`GOGC=200`，减少内存分配。
+
+
 
 ## 贡献
 
