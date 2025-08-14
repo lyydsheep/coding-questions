@@ -15,9 +15,7 @@ const (
 	N = 1_000_000
 )
 
-/*
-2025/08/10 11:51:55 Total bytes allocated during Encode: 8399320 bytes (8.01 MiB)
-*/
+// TestV1Encoding Total bytes allocated during Encode: 8399320 bytes (8.01 MiB)
 func TestV1Encoding(t *testing.T) {
 	//	初始化待编码的切片
 	in := make([]struct{}, N)
@@ -47,6 +45,7 @@ func TestV1Encoding(t *testing.T) {
 	log.Printf("Total bytes allocated during Encode: %d bytes (%.2f MiB)", allocBytes, float64(allocBytes)/1024/1024)
 }
 
+// TestV1Decoding Total bytes allocated during Decode: 8387344 bytes (8.00 MiB)
 func TestV1Decoding(t *testing.T) {
 	str := "[" + strings.TrimSuffix(strings.Repeat("{},", N), ",") + "]"
 	in := strings.NewReader(str)
@@ -74,5 +73,5 @@ func TestV1Decoding(t *testing.T) {
 	runtime.ReadMemStats(&afterStats)
 
 	allocBytes := afterStats.TotalAlloc - beforeStats.TotalAlloc
-	log.Printf("Total bytes allocated during Encode: %d bytes (%.2f MiB)", allocBytes, float64(allocBytes)/1024/1024)
+	log.Printf("Total bytes allocated during Dncode: %d bytes (%.2f MiB)", allocBytes, float64(allocBytes)/1024/1024)
 }
