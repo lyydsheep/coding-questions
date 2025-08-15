@@ -42,9 +42,9 @@
     - [x] CPU：CPU 飙高，影响整个服务器性能
     - [x] 内存：内存是否泄露、是否会 OOM
 2. 程序问题
-    - [ ] goroutine：是否存在协程过多、协程泄露情况
-    - [ ] deadlock：是否存在死锁
-    - [ ] data race detector：并发情况下，是否存在数据竞争
+    - [x] goroutine：是否存在协程过多、协程泄露情况
+    - [x] deadlock：是否存在死锁
+    - [x] data race detector：并发情况下，是否存在数据竞争
     - [x] GC：是否频繁 GC
 
 #### 性能优化实践
@@ -74,6 +74,20 @@
 5. 调整代码或者配置，例如`GOGC=200`，减少内存分配。
 
 
+##### 协程泄露排查
+1. 进入交互式终端：`go tool pprof http://host:port/debug/pprof/goroutine`
+2. 使用 `top` 或 `web` 命令查看协程创建情况。
+3. 使用`list` 命令查看协程泄露的函数。
+
+##### 锁竞争排查
+1. 进入交互式终端：`go tool pprof http://host:port/debug/pprof/mutex`
+2. 使用 `top` 或 `web` 命令查看锁占用情况。
+3. 使用`list` 命令查看长时间占用锁的函数。
+
+##### 阻塞操作排查
+1. 进入交互式终端：`go tool pprof http://host:port/debug/pprof/block`
+2. 使用 `top` 或 `web` 命令查看函数阻塞情况。
+3. 使用`list` 命令查看阻塞较长时间的函数。
 
 ## 贡献
 
