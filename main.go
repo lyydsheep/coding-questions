@@ -1,27 +1,13 @@
 package main
 
 import (
-	"coding-questions/questions"
-	"context"
+	"coding-questions/algorithm"
 	"fmt"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
 )
 
 func main() {
-	ctx, cancel := context.WithCancel(context.Background())
-	sigChan := make(chan os.Signal, 1)
-	signal.Notify(sigChan, syscall.SIGTERM, syscall.SIGINT)
-
-	// working...
-	questions.SolveQ7(ctx)
-
-	// 优雅退出
-	<-sigChan
-	cancel()
-	// 等待一段时间确保协程退出
-	fmt.Println("quiting....")
-	time.Sleep(time.Second * 5)
+	defer algorithm.Writer.Flush()
+	var n int
+	fmt.Fscan(algorithm.Reader, &n)
+	fmt.Fprint(algorithm.Writer, n)
 }
